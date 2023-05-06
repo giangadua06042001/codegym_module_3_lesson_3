@@ -1,0 +1,32 @@
+CREATE DATABASE quanlisinhvien;
+USE quanlisinhvien;
+CREATE TABLE Class(
+ClassID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ClassName varchar(60) not null,
+Strast DATETIME not null,
+Status BIT
+);
+CREATE TABLE Students(
+StudentID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+StudentName VARCHAR(60) NOT NULL,
+Addres VARCHAR (40) NOT NULL,
+Status BIT NOT NULL,
+ClassID INT NOT NULL,
+ FOREIGN KEY (ClassId) REFERENCES Class (ClassID)
+ );
+ CREATE TABLE  Subject(
+ SubjectID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ SubName VARCHAR (50) NOT NULL,
+ Credit TINYINT NOT NULL DEFAULT 1 CHECK(Credit >=1),
+ Status BIT DEFAULT 1
+ );
+ CREATE TABLE Mark(
+ MarkID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ SubjectID INT,
+ StudentID INT,
+ Mark FLOAT DEFAULT 0 CHECK( Mark BETWEEN 0 AND 10),
+FOREIGN KEY (subjectID) REFERENCES subject(subjectID),
+FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
+);
+INSERT INTO Student(StudentName,Addess,Status,ClassID)
+VALUES("Nguyen Hai son","ha Noi",1,1);
